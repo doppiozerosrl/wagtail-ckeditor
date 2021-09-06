@@ -26,22 +26,21 @@ class CKEditor(WidgetWithScript, widgets.Textarea):
 
     def __init__(self, attrs=None, **kwargs):
         super(CKEditor, self).__init__(attrs)
-        self.kwargs = self.getDefaultArgs()
+        self.kwargs = {}
         self.features = kwargs.pop('features', None)
         if kwargs is not None:
             self.kwargs.update(kwargs)
 
-        if WAGTAIL_VERSION >= '2.0':
-            if self.features is None:
-                self.features = features.get_default_features()
-                self.converter = EditorHTMLConverter()
-            else:
-                self.converter = EditorHTMLConverter(self.features)
+        if self.features is None:
+            self.features = features.get_default_features()
+            self.converter = EditorHTMLConverter()
+        else:
+            self.converter = EditorHTMLConverter(self.features)
 
     def get_panel(self):
         return RichTextFieldPanel
 
-    def render(self, name, value, attrs=None):
+    def render(self, name, value, attrs=None, renderer=None):
         if value is None:
             translated_value = None
         else:
