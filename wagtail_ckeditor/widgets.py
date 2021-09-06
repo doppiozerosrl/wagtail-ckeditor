@@ -8,8 +8,8 @@ from django.forms import widgets
 from django.utils.safestring import mark_safe
 from wagtail.utils.widgets import WidgetWithScript
 from wagtail.admin.edit_handlers import RichTextFieldPanel
-from wagtail.code.rich_text import DbWhitelister
-from wagtail.code.rich_text import expand_db_html
+from wagtail.core.rich_text import DbWhitelister
+from wagtail.core.rich_text import expand_db_html
 
 from wagtail_ckeditor import settings
 
